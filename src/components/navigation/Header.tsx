@@ -4,18 +4,22 @@
  */
 
 import React, { useState } from 'react';
-import { Flame, Moon, Sun, Database, Shield, Users, Sparkles, AlertCircle } from 'lucide-react';
+import { Flame, Moon, Sun, Database, Shield, Users, Sparkles, AlertCircle, Download } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
+import { usePWAInstall } from '../../hooks/usePWAInstall';
 
 interface HeaderProps {
   onOpenProfileSwitcher: () => void;
   onOpenBackupModal: () => void;
+  onOpenInstallModal?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   onOpenProfileSwitcher,
   onOpenBackupModal,
+  onOpenInstallModal,
 }) => {
+  const { isInstalled } = usePWAInstall();
   const {
     activeProfile,
     streakInfo,
@@ -42,9 +46,11 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         {/* Brand */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-white text-zinc-950 font-black tracking-widest text-sm shadow-sm select-none">
-            F
-          </div>
+          <img
+            src="/favicon.svg"
+            alt="FOCUS"
+            className="w-8 h-8 rounded-xl shadow-md border border-indigo-500/30 select-none object-cover"
+          />
           <div>
             <h1 className="text-base font-extrabold tracking-wider text-white">FOCUS</h1>
             <p className="hidden md:block text-[10px] text-zinc-400 font-medium tracking-tight">
@@ -113,11 +119,23 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </div>
 
+          {/* Install PWA Button (Hidden when running in standalone mode) */}
+          {!isInstalled && onOpenInstallModal && (
+            <button
+              onClick={onOpenInstallModal}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-amber-400 hover:text-amber-300 border border-amber-500/30 transition-all text-xs font-semibold shadow-sm"
+              title="Install FOCUS app on your device"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Install</span>
+            </button>
+          )}
+
           {/* Backup & Cloud Storage */}
           <button
             onClick={onOpenBackupModal}
             className="p-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 border border-zinc-800/80 transition-colors"
-            title="Data Backup & Cloud Sync"
+            title="Data Backup & Storage Settings"
           >
             <Database className="w-4 h-4" />
           </button>

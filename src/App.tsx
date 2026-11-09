@@ -15,18 +15,25 @@ import { ProfileView } from './components/profile/ProfileView';
 import { ProfileSwitcherModal } from './components/profile/ProfileSwitcherModal';
 import { DataBackupModal } from './components/settings/DataBackupModal';
 import { CelebrationModal } from './components/common/CelebrationModal';
+import { PWAInstallModal } from './components/common/PWAInstallModal';
+import { OfflineIndicator } from './components/common/OfflineIndicator';
 
 const AppContent: React.FC = () => {
   const { activeTab } = useApp();
   const [showProfileSwitcher, setShowProfileSwitcher] = useState(false);
   const [showBackupModal, setShowBackupModal] = useState(false);
+  const [showInstallModal, setShowInstallModal] = useState(false);
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col font-sans transition-colors duration-200">
+      {/* Offline Status Indicator */}
+      <OfflineIndicator />
+
       {/* Top Application Header */}
       <Header
         onOpenProfileSwitcher={() => setShowProfileSwitcher(true)}
         onOpenBackupModal={() => setShowBackupModal(true)}
+        onOpenInstallModal={() => setShowInstallModal(true)}
       />
 
       {/* Desktop Navigation */}
@@ -52,6 +59,10 @@ const AppContent: React.FC = () => {
 
       {showBackupModal && (
         <DataBackupModal onClose={() => setShowBackupModal(false)} />
+      )}
+
+      {showInstallModal && (
+        <PWAInstallModal onClose={() => setShowInstallModal(false)} />
       )}
 
       {/* Milestone / Streak Celebration Modal */}

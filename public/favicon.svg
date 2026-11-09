@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="50%" stop-color="#181824"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </linearGradient>
+    <radialGradient id="lampCone" cx="30%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.32"/>
+      <stop offset="50%" stop-color="#f59e0b" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#451a03"/>
+      <stop offset="100%" stop-color="#1c0d02"/>
+    </linearGradient>
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffedd5"/>
+      <stop offset="100%" stop-color="#fed7aa"/>
+    </linearGradient>
+    <linearGradient id="sweaterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#4338ca"/>
+    </linearGradient>
+    <linearGradient id="headphoneGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="deskGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+    <linearGradient id="bookGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fef9c3"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  <rect x="4" y="4" width="504" height="504" rx="108" fill="none" stroke="#6366f1" stroke-width="2.5" stroke-opacity="0.3"/>
+  <circle cx="256" cy="310" r="210" fill="url(#lampCone)"/>
+
+  <rect x="56" y="372" width="400" height="90" rx="18" fill="url(#deskGrad)"/>
+  <rect x="56" y="372" width="400" height="8" rx="4" fill="#92400e"/>
+
+  <path d="M 120 120 Q 120 135 105 135 Q 120 135 120 150 Q 120 135 135 135 Q 120 135 120 120 Z" fill="#fbbf24" opacity="0.85"/>
+  <path d="M 400 130 Q 400 142 388 142 Q 400 142 400 154 Q 400 142 412 142 Q 400 142 400 130 Z" fill="#fde047" opacity="0.8"/>
+
+  <!-- Mini Lamp -->
+  <path d="M 95 372 L 105 372 L 105 270 Q 105 240 135 235 L 145 234" stroke="#a1a1aa" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <path d="M 130 220 L 165 240 L 140 260 Z" fill="#fbbf24"/>
+  <ellipse cx="152" cy="250" rx="8" ry="14" fill="#fef08a"/>
+
+  <!-- Mug -->
+  <rect x="382" y="348" width="28" height="26" rx="6" fill="#f43f5e"/>
+  <path d="M 410 354 Q 418 360 410 366" stroke="#f43f5e" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 396 358 A 2 2 0 0 1 399 361 L 396 364 L 393 361 A 2 2 0 0 1 396 358 Z" fill="#ffffff"/>
+
+  <!-- Pomodoro Clock -->
+  <circle cx="132" cy="358" r="14" fill="#ef4444"/>
+  <circle cx="132" cy="358" r="10" fill="#ffffff"/>
+  <line x1="132" y1="358" x2="132" y2="351" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+  <line x1="132" y1="358" x2="137" y2="360" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/>
+  <ellipse cx="132" cy="342" rx="3.5" ry="2" fill="#22c55e" transform="rotate(-30 132 342)"/>
+
+  <!-- Character -->
+  <path d="M 175 385 C 180 300 210 270 256 270 C 302 270 332 300 337 385 Z" fill="url(#sweaterGrad)"/>
+  <rect x="244" y="248" width="24" height="26" rx="6" fill="url(#skinGrad)"/>
+  <ellipse cx="256" cy="180" rx="68" ry="62" fill="url(#hairGrad)"/>
+  <ellipse cx="256" cy="205" rx="56" ry="54" fill="url(#skinGrad)"/>
+
+  <!-- Headphones -->
+  <path d="M 194 205 C 194 130 318 130 318 205" stroke="url(#headphoneGrad)" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <rect x="186" y="194" width="16" height="34" rx="8" fill="url(#headphoneGrad)"/>
+  <rect x="310" y="194" width="16" height="34" rx="8" fill="url(#headphoneGrad)"/>
+
+  <!-- Bangs -->
+  <path d="M 192 190 C 192 160 215 150 256 150 C 297 150 320 160 320 190 C 310 185 290 190 282 176 C 275 190 255 185 245 174 C 235 188 215 192 192 190 Z" fill="url(#hairGrad)"/>
+  <path d="M 256 148 Q 262 130 274 135 Q 265 142 260 150 Z" fill="url(#hairGrad)"/>
+
+  <!-- Blush -->
+  <ellipse cx="225" cy="222" rx="11" ry="6" fill="#fb7185" opacity="0.45"/>
+  <ellipse cx="287" cy="222" rx="11" ry="6" fill="#fb7185" opacity="0.45"/>
+
+  <!-- Glasses -->
+  <circle cx="230" cy="208" r="17" fill="none" stroke="#fbbf24" stroke-width="3.5"/>
+  <circle cx="282" cy="208" r="17" fill="none" stroke="#fbbf24" stroke-width="3.5"/>
+  <line x1="247" y1="208" x2="265" y2="208" stroke="#fbbf24" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Eyes & Mouth -->
+  <path d="M 222 210 Q 230 204 238 210" stroke="#1c0d02" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+  <path d="M 274 210 Q 282 204 290 210" stroke="#1c0d02" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+  <path d="M 251 228 Q 256 233 261 228" stroke="#1c0d02" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Arms & Hands -->
+  <path d="M 200 320 C 190 350 215 372 238 368" stroke="#6366f1" stroke-width="24" stroke-linecap="round" fill="none"/>
+  <path d="M 312 320 C 322 350 297 372 274 368" stroke="#6366f1" stroke-width="24" stroke-linecap="round" fill="none"/>
+  <circle cx="236" cy="366" r="11" fill="url(#skinGrad)"/>
+  <circle cx="276" cy="366" r="11" fill="url(#skinGrad)"/>
+
+  <!-- Open Notebook -->
+  <path d="M 256 384 L 180 376 C 176 376 172 380 174 384 L 182 430 C 183 434 187 436 191 436 L 256 442 Z" fill="url(#bookGrad)"/>
+  <path d="M 256 384 L 332 376 C 336 376 340 380 338 384 L 330 430 C 329 434 325 436 321 436 L 256 442 Z" fill="url(#bookGrad)"/>
+  <line x1="256" y1="384" x2="256" y2="442" stroke="#cbd5e1" stroke-width="2.5"/>
+
+  <!-- Pencil -->
+  <line x1="278" y1="364" x2="296" y2="340" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round"/>
+  <polygon points="274,369 278,363 280,366" fill="#1e293b"/>
+  <circle cx="296" cy="340" r="3" fill="#f43f5e"/>
+</svg>
