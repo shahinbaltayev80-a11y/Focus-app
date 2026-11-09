@@ -46,6 +46,8 @@ jobs:
           fi
 
       - name: Build production bundle
+        env:
+          BASE_PATH: '/Focus-app/'
         run: |
           npm run build
           cp dist/index.html dist/404.html

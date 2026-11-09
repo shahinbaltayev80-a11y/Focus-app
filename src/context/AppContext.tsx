@@ -159,11 +159,34 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   // 1. Initial Load of Profiles
   useEffect(() => {
     async function init() {
-      const allProfiles = await getProfiles();
-      if (allProfiles.length === 0) {
-        // Create initial default profile
-        const defaultProfile: Profile = {
-          id: 'profile_' + Date.now(),
+      try {
+        const allProfiles = await getProfiles();
+        if (allProfiles.length === 0) {
+          // Create initial default profile
+          const defaultProfile: Profile = {
+            id: 'profile_' + Date.now(),
+            name: 'Focus Master',
+            avatar: 'avatar_1',
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+            motivationalMessage: 'Every minute builds a better you.',
+            themePreference: 'dark',
+          };
+          await saveProfile(defaultProfile);
+          setProfiles([defaultProfile]);
+          setActiveProfile(defaultProfile);
+        } else {
+          setProfiles(allProfiles);
+          // Look up last active profile or default to first
+          const lastId = localStorage.getItem('focus_last_profile_id');
+          const match = allProfiles.find(p => p.id === lastId);
+          setActiveProfile(match || allProfiles[0]);
+        }
+      } catch (err) {
+        console.error('Failed to load profiles from database:', err);
+        // Resilient in-memory fallback to avoid white screen if browser limits IndexedDB
+        const fallbackProfile: Profile = {
+          id: 'profile_fallback',
           name: 'Focus Master',
           avatar: 'avatar_1',
           createdAt: Date.now(),
@@ -171,15 +194,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
           motivationalMessage: 'Every minute builds a better you.',
           themePreference: 'dark',
         };
-        await saveProfile(defaultProfile);
-        setProfiles([defaultProfile]);
-        setActiveProfile(defaultProfile);
-      } else {
-        setProfiles(allProfiles);
-        // Look up last active profile or default to first
-        const lastId = localStorage.getItem('focus_last_profile_id');
-        const match = allProfiles.find(p => p.id === lastId);
-        setActiveProfile(match || allProfiles[0]);
+        setProfiles([fallbackProfile]);
+        setActiveProfile(fallbackProfile);
       }
     }
     init();
@@ -192,23 +208,29 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
     async function loadProfileData() {
       if (!activeProfile) return;
-      const [projList, sessList, achList, memList, stngs] = await Promise.all([
-        getProjects(activeProfile.id),
-        getSessions(activeProfile.id),
-        getUnlockedAchievements(activeProfile.id),
-        getMemories(activeProfile.id),
-        getSettings(activeProfile.id),
-      ]);
+      let sessList: FocusSession[] = [];
+      try {
+        const [projList, loadedSessions, achList, memList, stngs] = await Promise.all([
+          getProjects(activeProfile.id),
+          getSessions(activeProfile.id),
+          getUnlockedAchievements(activeProfile.id),
+          getMemories(activeProfile.id),
+          getSettings(activeProfile.id),
+        ]);
 
-      setProjects(projList);
-      setSessions(sessList);
-      setUnlockedAchievements(achList);
-      setMemories(memList);
-      setSettings(stngs);
+        sessList = loadedSessions;
+        setProjects(projList);
+        setSessions(sessList);
+        setUnlockedAchievements(achList);
+        setMemories(memList);
+        setSettings(stngs);
 
-      // Check if demo data exists
-      const isDemo = sessList.some(s => s.notes === '__DEMO_DATA__');
-      setHasDemoData(isDemo);
+        // Check if demo data exists
+        const isDemo = sessList.some(s => s.notes === '__DEMO_DATA__');
+        setHasDemoData(isDemo);
+      } catch (err) {
+        console.error('Failed to load profile data from IndexedDB:', err);
+      }
 
       // Check for saved active timer in localStorage
       try {
