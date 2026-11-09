@@ -1,0 +1,6 @@
+{
+  "name": "FOCUS — Personal Productivity & Achievement",
+  "description": "A personal time-management and achievement application designed to help people study, read books, exercise, learn languages, work, develop skills and achieve personal goals. Every Minute Builds a Better You.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
